@@ -13,10 +13,29 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailsCharacterFragment"
+            app:destination="@id/detailsCharacterFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.marvel.ui.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/creatorFragment"
+        android:name="com.example.marvel.ui.creator.CreatorFragment"
+        android:label="CreatorFragment"
+        tools:layout="@layout/fragment_creator" />
+    <fragment
+        android:id="@+id/seriesFragment"
+        android:name="com.example.marvel.ui.series.SeriesFragment"
+        android:label="SeriesFragment"
+        tools:layout="@layout/fragment_series"/>
+    <fragment
+        android:id="@+id/detailsCharacterFragment"
+        android:name="com.example.marvel.ui.characterDetails.DetailsCharacterFragment"
+        android:label="DetailsCharacterFragment"
+        tools:layout="@layout/fragment_details_character"/>
+
 </navigation>

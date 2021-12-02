@@ -3,7 +3,7 @@ package com.example.marvel.di
 import com.example.marvel.data.local.MarvelDatabase
 import com.example.marvel.data.remote.MarvelService
 import com.example.marvel.domain.MarvelRepository
-import com.example.marvel.domain.MarvelRepositoryImbl
+import com.example.marvel.domain.MarvelRepositoryImpl
 import com.example.marvel.domain.mapper.CharacterMapper
 import dagger.Module
 import dagger.Provides
@@ -22,16 +22,11 @@ class RepositoryModule {
         characterMapper: CharacterMapper,
      characterDatabase: MarvelDatabase
     ): MarvelRepository {
-        return MarvelRepositoryImbl(apiService, characterMapper, characterDatabase)
+        return MarvelRepositoryImpl(apiService, characterMapper, characterDatabase)
     }
 
     @Singleton
     @Provides
     fun provideCharacterMapper(): CharacterMapper = CharacterMapper()
-
-
-
-
-
 
 }

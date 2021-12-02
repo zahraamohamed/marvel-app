@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    margin  -->
+    <dimen name="margin1x">8dp</dimen>
+    <dimen name="margin2x">16dp</dimen>
+    <dimen name="margin2.5x">18dp</dimen>
+    <dimen name="margin3x">24dp</dimen>
+    <dimen name="margin4x">32dp</dimen>
+    <dimen name="margin6x">48dp</dimen>
+    <dimen name="margin7x">54dp</dimen>
+    <dimen name="margin8x">64dp</dimen>
+
+    <!--    padding  -->
+    <dimen name="padding1x">8dp</dimen>
+    <dimen name="padding2x">16dp</dimen>
+    <dimen name="padding3x">24dp</dimen>
+    <dimen name="padding4x">32dp</dimen>
+
+
+    <!--    text-->
+    <dimen name="txt1x">8sp</dimen>
+    <dimen name="txt2x">16sp</dimen>
+    <dimen name="txt2.5x">18sp</dimen>
+    <dimen name="txt3x">24sp</dimen>
+    <dimen name="txt4x">32sp</dimen>
+</resources>

@@ -10,11 +10,9 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CharacterDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCharacters(item: List<CharacterEntity>)
 
-
     @Query("Select * from Marvel_Character")
-    fun getCharacters(): Flow<CharacterEntity>
+    fun getCharacters(): Flow<List<CharacterEntity>>
 }

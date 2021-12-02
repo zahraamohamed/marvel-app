@@ -18,17 +18,11 @@ object DatabaseModule {
 
         @Singleton
         @Provides
-        fun provideYourDatabase(
+        fun provideMarvelDatabase(
             @ApplicationContext context: Context
-        ) = Room.databaseBuilder(
-            context,
-            MarvelDatabase::class.java,
-            Constant.DATABASE_NAME
-        ).build()
+        ) = Room.databaseBuilder(context, MarvelDatabase::class.java, Constant.DATABASE_NAME).build()
 
         @Singleton
         @Provides
-        fun provideYourDao(marvelDatabase: MarvelDatabase) = marvelDatabase.characterDao
-
-
+        fun provideMarvelDao(marvelDatabase: MarvelDatabase) = marvelDatabase.characterDao
 }
