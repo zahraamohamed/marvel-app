@@ -2,10 +2,16 @@ package com.example.marvel.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.domain.MarvelRepositoryImbl
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class HomeViewModel:ViewModel(),CharacterInteractionListener {
-    private val repository=MarvelRepositoryImbl()
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val repository:MarvelRepository
+
+) :ViewModel(),CharacterInteractionListener {
 
     val characters=repository.getCharacters().asLiveData()
 

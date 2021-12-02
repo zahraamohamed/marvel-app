@@ -7,9 +7,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.marvel.R
 import com.example.marvel.databinding.ActivityMainBinding
 import com.example.marvel.ui.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
-    override val theme = R.style.Theme_Marvel
     override val viewID = R.layout.activity_main
 
 

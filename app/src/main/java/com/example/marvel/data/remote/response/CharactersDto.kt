@@ -3,7 +3,7 @@ package com.example.marvel.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class CharacterDto(
+data class CharactersDto(
     @SerializedName("comics")
     val comics: SubList?,
     @SerializedName("description")

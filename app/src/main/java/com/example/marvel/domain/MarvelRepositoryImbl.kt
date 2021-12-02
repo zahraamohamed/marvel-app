@@ -1,32 +1,29 @@
 package com.example.marvel.domain
 
+import com.example.marvel.data.local.MarvelDatabase
+import com.example.marvel.data.local.entity.CharacterEntity
+import com.example.marvel.data.remote.MarvelService
 import com.example.marvel.data.remote.State
-import com.example.marvel.di.DependencyContainer
+import com.example.marvel.domain.mapper.CharacterMapper
+import com.example.marvel.domain.models.Character
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import retrofit2.Response
+import javax.inject.Inject
 
-class MarvelRepositoryImbl:MarvelRepository {
+class MarvelRepositoryImbl @Inject constructor(
+    private val apiService: MarvelService,
+    private val characterMapper: CharacterMapper,
+    private val characterDatabase: MarvelDatabase,) : MarvelRepository {
 
-    private val dependencyContainer = DependencyContainer()
-
-    override fun getCharacters() = wrapWithFlow { dependencyContainer.apiService.getCharacter() }
 
 
-    private fun <T> wrapWithFlow(function: suspend () -> Response<T>): Flow<State<T?>> =
-        flow {
-            try {
-                emit(State.Loading)
-                emit(checkIsSuccessful(function()))
-            } catch (e: Exception) {
-                emit(State.Error(e.message.toString()))
-            }
-        }
+    override  fun getCharacters(): Flow<CharacterEntity> {
+        return characterDatabase.characterDao.getCharacters()
+    }
 
-    private fun <T> checkIsSuccessful(response: Response<T>): State<T?> =
-        if (response.isSuccessful) {
-            State.Success(response.body())
-        } else {
-            State.Error(response.message())
-        }
+    override suspend fun refreshCharacters() {
+    }
+
+
+
 }
