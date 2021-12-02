@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.example.marvel.data.remote.response.CharactersDto" />
+            type="com.example.marvel.data.remote.response.CreatorDto" />
 
         <variable
             name="listener"
@@ -23,7 +23,7 @@
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@{item.name}"
+            android:text="@{item.firstName}"
             android:textColor="@color/teal_700"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

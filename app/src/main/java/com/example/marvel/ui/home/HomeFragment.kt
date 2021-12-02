@@ -24,6 +24,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.scorerRecycler.adapter=CharacterAdapter(emptyList(),viewModel)
+        binding.scorerRecycler.adapter=CharacterAdapter(emptyList(),viewModel)
     }
 }

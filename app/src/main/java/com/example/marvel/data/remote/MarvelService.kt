@@ -1,6 +1,7 @@
 package com.example.marvel.data.remote
 
 import com.example.marvel.data.remote.response.*
+import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -21,7 +22,7 @@ interface MarvelService {
     ): Response<BaseResponse<ComicsDto>?>
 
     @GET("creator")
-    suspend fun getCreator(
+     suspend fun getCreator(
     ): Response<BaseResponse<CreatorDto>?>
 
     @GET("stories")
