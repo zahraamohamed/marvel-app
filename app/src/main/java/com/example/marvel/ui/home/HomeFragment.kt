@@ -17,12 +17,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val inflate: (LayoutInflater, ViewGroup?, attachToRoot: Boolean) -> FragmentHomeBinding
         get() = FragmentHomeBinding::inflate
 
-    @Inject
-    lateinit var injectRepository: MarvelRepositoryImpl
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.characterRecycler.adapter = CharacterAdapter(emptyList(), viewModel)
     }
 }

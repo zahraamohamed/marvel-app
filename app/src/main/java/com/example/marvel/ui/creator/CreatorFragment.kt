@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.marvel.databinding.FragmentCreatorBinding
 import com.example.marvel.ui.base.BaseFragment
+import com.example.marvel.ui.home.CharacterAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,6 +19,7 @@ class CreatorFragment : BaseFragment<FragmentCreatorBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.creatorRecycler.adapter = CreatorAdapter(emptyList(), viewModel)
 
     }
 }

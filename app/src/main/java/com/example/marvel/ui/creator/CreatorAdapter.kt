@@ -6,7 +6,7 @@ import com.example.marvel.ui.base.BaseAdapter
 import com.example.marvel.ui.home.CharacterInteractionListener
 
 class CreatorAdapter(
-    items: List<CreatorDto>, listener: CharacterInteractionListener,
+    items: List<CreatorDto>, listener: CreatorsInteractionListener,
 ) : BaseAdapter<CreatorDto>(items, listener) {
     override val layoutID = R.layout.item_creator
 }

@@ -13,8 +13,8 @@ fun setImageUrl(view: ImageView, url: String?) {
     url?.let {
         Glide.with(view.context)
             .load(url)
-            .placeholder(R.drawable.ic_home)
-            .error(R.drawable.ic_launcher_background)
+            .placeholder(R.drawable.ic_marvel_svgrepo_com)
+            .error(R.drawable.ic_error)
             .into(view)
     }
 }

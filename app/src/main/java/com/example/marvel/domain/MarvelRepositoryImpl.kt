@@ -1,12 +1,12 @@
 package com.example.marvel.domain
 
+import android.util.Log
 import com.example.marvel.data.local.MarvelDatabase
-import com.example.marvel.data.local.entity.CharacterEntity
 import com.example.marvel.data.remote.MarvelService
 import com.example.marvel.data.remote.State
-import com.example.marvel.data.remote.response.BaseResponse
-import com.example.marvel.data.remote.response.CreatorDto
 import com.example.marvel.domain.mapper.CharacterMapper
+import com.example.marvel.domain.mapper.CreatorMapper
+import com.example.marvel.domain.mapper.MapperObject
 import com.example.marvel.domain.models.Character
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class MarvelRepositoryImpl @Inject constructor(
     private val apiService: MarvelService,
-    private val characterMapper: CharacterMapper,
+    private val mapperObject: MapperObject,
     private val characterDatabase: MarvelDatabase,
 ) : MarvelRepository {
 
@@ -24,14 +24,50 @@ class MarvelRepositoryImpl @Inject constructor(
             emit(State.Loading)
             try {
                 val characters = apiService.getCharacter().body()?.data?.results?.map { charactersDto ->
-                    characterMapper.map(charactersDto)
+                    mapperObject.characterMapper.map(charactersDto)
                 }
+                val characterEntities = characters?.map { character ->
+                    mapperObject.characterMapper.mapToEntity(character)
+                }
+
+                characterEntities?.let{characterDatabase.characterDao.insertCharacters(it)}
+                Log.v("TESTING", characterEntities.toString())
                 emit(State.Success(characters))
             } catch (e: Exception) {
                 emit(State.Error(e.message.toString()))
             }
         }
     }
+
+    override fun getCreator(): Flow<State<List<Character>?>> {
+
+        return flow {
+            emit(State.Loading)
+            try {
+                val creator = apiService.getCreators().body()?.data?.results?.map { it ->
+                    mapperObject.creatorMapper.map(it)
+                }
+                emit(State.Success(creator))
+            } catch (e: Exception) {
+                emit(State.Error(e.message.toString()))
+            }
+        }
+    }
+
+
+//     fun<T> wrapWithFlow(function: suspend () -> Response<T>): Flow<State<List<Character>?>>
+//    = flow {
+//            emit(State.Loading)
+//            try {
+//                val response = function().body()?.data?.results?.map { dto ->
+//                    characterMapper.map(dto)
+//                }
+//                emit(State.Success(response))
+//            } catch (e: Exception) {
+//                emit(State.Error(e.message.toString()))
+//            }
+//        }
+//    }
 
     private fun <T> wrapWithFlow(function: suspend () -> Response<T>): Flow<State<T?>> =
         flow {
