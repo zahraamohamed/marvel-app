@@ -1,8 +1,10 @@
 package com.example.marvel.domain
 
+import android.util.Log
 import com.example.marvel.data.local.MarvelDatabase
 import com.example.marvel.data.remote.MarvelService
 import com.example.marvel.data.remote.State
+import com.example.marvel.data.remote.response.CharactersDto
 import com.example.marvel.domain.mapper.MapperObject
 import com.example.marvel.domain.models.Character
 import kotlinx.coroutines.flow.Flow
@@ -18,6 +20,10 @@ class MarvelRepositoryImpl @Inject constructor(
     override fun getCharacters() = wrapWithFlow(::getAllCharacters, ::refreshCharacters)
     override fun getCreator() = wrapWithFlow(::getAllCreators, ::refreshCreators)
     override fun getSeries() = wrapWithFlow(::getAllSeries, ::refreshSeries)
+    override fun search(name: String)=wrapWithFlow(::search,::refreshData )
+
+
+
 
 
     private suspend fun getAllCharacters(): List<Character> =
@@ -51,6 +57,18 @@ class MarvelRepositoryImpl @Inject constructor(
     }
 
     private suspend fun refreshSeries() {
+        apiService.getSeries().body()?.data?.results?.map {
+            mapperObject.seriesMapper.mapToEntity(it)
+        }?.let {
+            marvelDatabase.seriesDao.insertSeries(it)
+        }
+    }
+
+    private suspend fun search(): List<Character> = marvelDatabase.seriesDao.getSeries().map {
+        mapperObject.seriesMapper.mapToCharacter(it)
+    }
+
+    private suspend fun refreshDataSearched() {
         apiService.getSeries().body()?.data?.results?.map {
             mapperObject.seriesMapper.mapToEntity(it)
         }?.let {
