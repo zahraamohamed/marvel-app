@@ -9,5 +9,5 @@ interface MarvelRepository {
     fun getCharacters(): Flow<State<List<Character>?>>
     fun getCreator(): Flow<State<List<Character>?>>
     fun getSeries(): Flow<State<List<Character>?>>
-    fun search(name:String): Flow<State<List<Character>?>>
+//    fun search(name:String): Flow<State<List<Character>?>>
 }

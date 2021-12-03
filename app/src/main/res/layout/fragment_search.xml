@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.marvel.ui.search." />
+            type="com.example.marvel.ui.search.SearchViewModel" />
     </data>
 
     <FrameLayout

@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import com.example.marvel.BR
 import com.example.marvel.R
 import com.example.marvel.ui.base.BaseAdapter
+import com.example.marvel.ui.series.SeriesAdapter
 import com.example.marvel.util.HomeItem
 
 class HomeNestedRecyclerAdapter(
@@ -30,9 +31,11 @@ class HomeNestedRecyclerAdapter(
 
     private fun getLayout(viewType: Int): Int =
         when (viewType) {
-            TYPE_CHARACTER -> R.layout.items_characteres
-            TYPE_SERIES -> R.layout.items_characteres
-            else -> R.layout.items_characteres
+            TYPE_CHARACTER -> R.layout.items_nested_characteres
+
+            TYPE_SERIES -> R.layout.items_nested_characteres
+            TYPE_COMICS -> R.layout.items_nested_comics
+            else -> R.layout.items_nested_characteres
         }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
@@ -49,7 +52,11 @@ class HomeNestedRecyclerAdapter(
             }
             is HomeItem.SeriesType -> {
                 holder.binding.setVariable(BR.adapter,
-                    CharacterAdapter(currentItem.items, listener))
+                    SeriesAdapter(currentItem.items, listener))
+            }
+            is HomeItem.ComicsType -> {
+                holder.binding.setVariable(BR.adapter,
+                    ComicsAdapter(currentItem.items, listener))
             }
         }
     }
@@ -60,11 +67,13 @@ class HomeNestedRecyclerAdapter(
 
             is HomeItem.CharacterType -> TYPE_CHARACTER
             is HomeItem.SeriesType -> TYPE_SERIES
+            is HomeItem.ComicsType -> TYPE_COMICS
         }
 
     companion object {
         const val TYPE_CHARACTER = 1
-        const val TYPE_SERIES = 2
+        const val TYPE_COMICS = 2
+        const val TYPE_SERIES = 3
 
     }
 

@@ -5,4 +5,6 @@
     <string name="search">search</string>
     <string name="creators">creators</string>
     <string name="series">series</string>
+    <string name="character">character</string>
+    <string name="comics">comices</string>
 </resources>

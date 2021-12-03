@@ -11,5 +11,4 @@ class SearchViewModel @Inject constructor(
     private val repository: MarvelRepository,
 
     ) : ViewModel() {
-        var search=repository.search().asLive
 }

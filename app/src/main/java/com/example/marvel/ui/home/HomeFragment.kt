@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.marvel.databinding.FragmentHomeBinding
 import com.example.marvel.ui.base.BaseFragment
+import com.example.marvel.util.HomeItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +23,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             Log.v("xyt", it.toString())
         })
 
-        binding.characterRecycler.adapter = CharacterAdapter(emptyList(), viewModel)
+        initNestedAdapter()
+        observeListsForAdapter()
+    }
+
+    private fun initNestedAdapter() {
+        binding.nestedRecycler.adapter = HomeNestedRecyclerAdapter(mutableListOf(), viewModel)
+    }
+
+    private fun observeListsForAdapter() {
+        (binding.nestedRecycler.adapter as HomeNestedRecyclerAdapter?)?.let { adapter ->
+
+            viewModel.characters.observe(this@HomeFragment) { items ->
+                items?.toData()?.let { adapter.addItem(HomeItem.CharacterType(it)) }
+            }
+            viewModel.comics.observe(this@HomeFragment) { items ->
+                items?.toData()?.let { adapter.addItem(HomeItem.ComicsType(it)) }
+            }
+
+            viewModel.series.observe(this@HomeFragment) { items ->
+                items?.toData()?.let { adapter.addItem(HomeItem.SeriesType(it)) }
+            }
+        }
     }
 }

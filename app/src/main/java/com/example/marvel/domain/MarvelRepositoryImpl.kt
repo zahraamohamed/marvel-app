@@ -20,7 +20,7 @@ class MarvelRepositoryImpl @Inject constructor(
     override fun getCharacters() = wrapWithFlow(::getAllCharacters, ::refreshCharacters)
     override fun getCreator() = wrapWithFlow(::getAllCreators, ::refreshCreators)
     override fun getSeries() = wrapWithFlow(::getAllSeries, ::refreshSeries)
-    override fun search(name: String)=wrapWithFlow(::search,::refreshData )
+//    override fun search(name: String)=wrapWithFlow(::search,::refreshData )
 
 
 

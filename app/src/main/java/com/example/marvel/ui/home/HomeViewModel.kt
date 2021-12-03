@@ -13,6 +13,10 @@ class HomeViewModel @Inject constructor(
     ) : ViewModel(), HomeInteractionListener {
 
     val characters = repository.getCharacters().asLiveData()
+    val series = repository.getSeries().asLiveData()
+    val comics = repository.getSeries().asLiveData()
+
+
 
 
 }
