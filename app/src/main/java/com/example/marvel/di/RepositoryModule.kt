@@ -6,7 +6,7 @@ import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.domain.MarvelRepositoryImpl
 import com.example.marvel.domain.mapper.CharacterMapper
 import com.example.marvel.domain.mapper.CreatorMapper
-import com.example.marvel.domain.mapper.MapperObject
+import com.example.marvel.domain.mapper.AllMapper
 import com.example.marvel.domain.mapper.SeriesMapper
 import dagger.Module
 import dagger.Provides
@@ -22,7 +22,7 @@ class RepositoryModule {
     @Provides
     fun provideRepository(
         apiService: MarvelService,
-        mapperObject: MapperObject,
+        mapperObject: AllMapper,
         marvelDatabase: MarvelDatabase,
     ): MarvelRepository {
         return MarvelRepositoryImpl(apiService, mapperObject, marvelDatabase)
@@ -34,7 +34,7 @@ class RepositoryModule {
         characterMapper: CharacterMapper,
         creatorMapper: CreatorMapper,
         seriesMapper: SeriesMapper,
-    ): MapperObject = MapperObject(characterMapper, creatorMapper,seriesMapper)
+    ): AllMapper = AllMapper(characterMapper, creatorMapper,seriesMapper)
 
     @Singleton
     @Provides

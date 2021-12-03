@@ -19,9 +19,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.characters.observe(this, {
-            Log.v("xyt", it.toString())
-        })
+
+//        viewModel.characters.observe(viewLifecycleOwner, {
+//            Log.v("xyt", it.toData().toString())
+//        })
 
         initNestedAdapter()
         observeListsForAdapter()
@@ -35,15 +36,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         (binding.nestedRecycler.adapter as HomeNestedRecyclerAdapter?)?.let { adapter ->
 
             viewModel.characters.observe(this@HomeFragment) { items ->
-                items?.toData()?.let { adapter.addItem(HomeItem.CharacterType(it)) }
+                Log.v("xyt", items.toData().toString())
+                items?.toData()?.let { adapter.addItem(HomeItem.CharacterType(it))
+                }
             }
             viewModel.comics.observe(this@HomeFragment) { items ->
                 items?.toData()?.let { adapter.addItem(HomeItem.ComicsType(it)) }
             }
 
-            viewModel.series.observe(this@HomeFragment) { items ->
-                items?.toData()?.let { adapter.addItem(HomeItem.SeriesType(it)) }
-            }
+//            viewModel.series.observe(this@HomeFragment) { items ->
+//                items?.toData()?.let { adapter.addItem(HomeItem.SeriesType(it)) }
+//            }
         }
     }
 }

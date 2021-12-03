@@ -1,5 +1,6 @@
 package com.example.marvel.ui.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.example.marvel.domain.MarvelRepository
@@ -15,7 +16,6 @@ class HomeViewModel @Inject constructor(
     val characters = repository.getCharacters().asLiveData()
     val series = repository.getSeries().asLiveData()
     val comics = repository.getSeries().asLiveData()
-
 
 
 

@@ -33,7 +33,7 @@ class HomeNestedRecyclerAdapter(
         when (viewType) {
             TYPE_CHARACTER -> R.layout.items_nested_characteres
 
-            TYPE_SERIES -> R.layout.items_nested_characteres
+//            TYPE_SERIES -> R.layout.items_nested_characteres
             TYPE_COMICS -> R.layout.items_nested_comics
             else -> R.layout.items_nested_characteres
         }
@@ -50,10 +50,10 @@ class HomeNestedRecyclerAdapter(
                     CharacterAdapter(currentItem.items, listener))
 
             }
-            is HomeItem.SeriesType -> {
-                holder.binding.setVariable(BR.adapter,
-                    SeriesAdapter(currentItem.items, listener))
-            }
+//            is HomeItem.SeriesType -> {
+//                holder.binding.setVariable(BR.adapter,
+//                    SeriesAdapter(currentItem.items, listener))
+//            }
             is HomeItem.ComicsType -> {
                 holder.binding.setVariable(BR.adapter,
                     ComicsAdapter(currentItem.items, listener))
@@ -66,7 +66,7 @@ class HomeNestedRecyclerAdapter(
         when (itemsNested[position]) {
 
             is HomeItem.CharacterType -> TYPE_CHARACTER
-            is HomeItem.SeriesType -> TYPE_SERIES
+//            is HomeItem.SeriesType -> TYPE_SERIES
             is HomeItem.ComicsType -> TYPE_COMICS
         }
 

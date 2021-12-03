@@ -11,7 +11,7 @@ import javax.inject.Inject
 class SeriesViewModel @Inject constructor(
     private val repository: MarvelRepository,
 
-    ) : ViewModel(), HomeInteractionListener {
+    ) : ViewModel(), SeriesInteractionListener {
 
     val series = repository.getSeries().asLiveData()
 

@@ -21,9 +21,9 @@ class CreatorFragment : BaseFragment<FragmentCreatorBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.creator.observe(this,{
-            Log.v("testt",it.toString())
-        })
+//        viewModel.creator.observe(this@CreatorFragment,{
+//            Log.v("testt",it.toString())
+//        })
         binding.creatorRecycler.adapter = CreatorAdapter(emptyList(), viewModel)
 
     }

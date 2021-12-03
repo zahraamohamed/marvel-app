@@ -7,7 +7,7 @@ import com.example.marvel.ui.base.BaseAdapter
 import com.example.marvel.ui.home.HomeInteractionListener
 
 class SeriesAdapter (
-    items: List<Character>, listener: HomeInteractionListener,
+    items: List<Character>, listener: SeriesInteractionListener,
 ) : BaseAdapter<Character>(items, listener) {
     override val layoutID = R.layout.item_series
 }

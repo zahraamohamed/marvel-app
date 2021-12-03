@@ -4,8 +4,7 @@ import android.util.Log
 import com.example.marvel.data.local.MarvelDatabase
 import com.example.marvel.data.remote.MarvelService
 import com.example.marvel.data.remote.State
-import com.example.marvel.data.remote.response.CharactersDto
-import com.example.marvel.domain.mapper.MapperObject
+import com.example.marvel.domain.mapper.AllMapper
 import com.example.marvel.domain.models.Character
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -13,7 +12,7 @@ import javax.inject.Inject
 
 class MarvelRepositoryImpl @Inject constructor(
     private val apiService: MarvelService,
-    private val mapperObject: MapperObject,
+    private val mapperObject: AllMapper,
     private val marvelDatabase: MarvelDatabase,
 ) : MarvelRepository {
 
@@ -28,14 +27,19 @@ class MarvelRepositoryImpl @Inject constructor(
 
     private suspend fun getAllCharacters(): List<Character> =
         marvelDatabase.characterDao.getCharacters().map {
+
             mapperObject.characterMapper.mapToCharacter(it)
         }
 
     private suspend fun refreshCharacters() {
+        Log.v("hhhhhhhhhh", apiService.getCharacter().toString())
+
         apiService.getCharacter().body()?.data?.results?.map {
+
             mapperObject.characterMapper.mapToEntity(it)
         }?.let {
             marvelDatabase.characterDao.insertCharacters(it)
+
         }
     }
 
@@ -88,9 +92,8 @@ class MarvelRepositoryImpl @Inject constructor(
             refreshData()
 
         } catch (e: Exception) {
+            Log.i("error hakeeer",e.message.toString())
         }
     }
-
-
 }
 
