@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.example.marvel.ui.home.CharacterInteractionListener" />
+            type="com.example.marvel.ui.home.HomeInteractionListener" />
     </data>
 
 

@@ -10,7 +10,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val repository: MarvelRepository,
 
-    ) : ViewModel(), CharacterInteractionListener {
+    ) : ViewModel(), HomeInteractionListener {
 
     val characters = repository.getCharacters().asLiveData()
 
