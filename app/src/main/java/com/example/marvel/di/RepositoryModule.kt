@@ -7,6 +7,7 @@ import com.example.marvel.domain.MarvelRepositoryImpl
 import com.example.marvel.domain.mapper.CharacterMapper
 import com.example.marvel.domain.mapper.CreatorMapper
 import com.example.marvel.domain.mapper.MapperObject
+import com.example.marvel.domain.mapper.SeriesMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,7 +33,8 @@ class RepositoryModule {
     fun provideMapperObjectMapper(
         characterMapper: CharacterMapper,
         creatorMapper: CreatorMapper,
-    ): MapperObject = MapperObject(characterMapper, creatorMapper)
+        seriesMapper: SeriesMapper,
+    ): MapperObject = MapperObject(characterMapper, creatorMapper,seriesMapper)
 
     @Singleton
     @Provides
@@ -41,5 +43,9 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideCreatorMapper(): CreatorMapper = CreatorMapper()
+
+    @Singleton
+    @Provides
+    fun provideSeriesMapper(): SeriesMapper = SeriesMapper()
 
 }

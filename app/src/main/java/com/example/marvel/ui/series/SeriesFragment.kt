@@ -18,6 +18,7 @@ class SeriesFragment : BaseFragment<FragmentSeriesBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.seriesRecycler.adapter = SeriesAdapter(emptyList(), viewModel)
 
     }
 }

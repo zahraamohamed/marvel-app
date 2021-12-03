@@ -1,7 +1,7 @@
 package com.example.marvel.di
 
 
-import com.example.marvel.data.remote.AuthInterceptor
+import com.example.marvel.data.remote.MarvelInterceptor
 import com.example.marvel.data.remote.MarvelService
 import com.example.marvel.util.Constant
 import dagger.Module
@@ -36,7 +36,7 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideOkHttpClient(
-        authInterceptor: AuthInterceptor,
+        authInterceptor: MarvelInterceptor,
         httpLoggingInterceptor: HttpLoggingInterceptor,
     ): OkHttpClient =
         OkHttpClient.Builder()
@@ -46,7 +46,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideInterceptor() = AuthInterceptor()
+    fun provideInterceptor() = MarvelInterceptor()
 
     @Singleton
     @Provides

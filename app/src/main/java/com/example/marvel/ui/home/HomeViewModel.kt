@@ -14,4 +14,5 @@ class HomeViewModel @Inject constructor(
 
     val characters = repository.getCharacters().asLiveData()
 
+
 }
