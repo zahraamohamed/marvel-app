@@ -15,5 +15,5 @@ interface SeriesDao {
     suspend fun insertSeries(item: List<SeriesEntity>)
 
     @Query("Select * from Marvel_Series")
-    fun getSeries(): Flow<List<SeriesEntity>>
+    suspend fun getSeries(): List<SeriesEntity>
 }

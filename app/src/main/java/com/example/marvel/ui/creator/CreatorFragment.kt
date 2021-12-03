@@ -1,6 +1,7 @@
 package com.example.marvel.ui.creator
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,10 @@ class CreatorFragment : BaseFragment<FragmentCreatorBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.creator.observe(this,{
+            Log.v("testt",it.toString())
+        })
         binding.creatorRecycler.adapter = CreatorAdapter(emptyList(), viewModel)
 
     }

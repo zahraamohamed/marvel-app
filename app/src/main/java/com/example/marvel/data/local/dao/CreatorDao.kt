@@ -13,5 +13,5 @@ interface CreatorDao {
     suspend fun insertCreator(item: List<CreatorEntity>)
 
     @Query("Select * from Marvel_Creator")
-    fun getCreator(): Flow<List<CreatorEntity>>
+   suspend fun getCreator(): List<CreatorEntity>
 }

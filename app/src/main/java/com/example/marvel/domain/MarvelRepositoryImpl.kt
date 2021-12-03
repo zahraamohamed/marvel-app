@@ -6,7 +6,6 @@ import com.example.marvel.data.remote.State
 import com.example.marvel.domain.mapper.MapperObject
 import com.example.marvel.domain.models.Character
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
@@ -16,36 +15,17 @@ class MarvelRepositoryImpl @Inject constructor(
     private val marvelDatabase: MarvelDatabase,
 ) : MarvelRepository {
 
-    override fun getCharacters(): Flow<State<List<Character>?>> {
-        return flow {
-            emit(State.Loading)
-            try {
-                val characters =
-                    apiService.getCharacter().body()?.data?.results?.map { charactersDto ->
-                        mapperObject.characterMapper.mapToEntity(charactersDto)
-                    }
-                val characterEntities = characters?.map { character ->
-                    mapperObject.characterMapper.mapToCharacter(character)
-                }
+    override fun getCharacters() = wrapWithFlow(::getAllCharacters, ::refreshCharacters)
+    override fun getCreator() = wrapWithFlow(::getAllCreators, ::refreshCreators)
+    override fun getSeries() = wrapWithFlow(::getAllSeries, ::refreshSeries)
 
-                characters?.let { marvelDatabase.characterDao.insertCharacters(it) }
-                emit(State.Success(characterEntities))
-            } catch (e: Exception) {
-                emit(State.Error(e.message.toString()))
-            }
+
+    private suspend fun getAllCharacters(): List<Character> =
+        marvelDatabase.characterDao.getCharacters().map {
+            mapperObject.characterMapper.mapToCharacter(it)
         }
-    }
 
-    fun getAllCharacters(): Flow<List<Character>> {
-        return marvelDatabase.characterDao
-            .getCharacters().flatMapConcat {
-                flow{
-                    emit( it.map { mapperObject.characterMapper.mapToCharacter(it) } )
-                }
-            }
-    }
-
-    suspend fun refreshCharacters() {
+    private suspend fun refreshCharacters() {
         apiService.getCharacter().body()?.data?.results?.map {
             mapperObject.characterMapper.mapToEntity(it)
         }?.let {
@@ -53,49 +33,45 @@ class MarvelRepositoryImpl @Inject constructor(
         }
     }
 
+    private suspend fun getAllCreators(): List<Character> =
+        marvelDatabase.creatorDao.getCreator().map {
+            mapperObject.creatorMapper.mapToCharacter(it)
+        }
 
-    override fun getCreator(): Flow<State<List<Character>?>> {
-
-        return flow {
-            emit(State.Loading)
-            try {
-                val creator = apiService.getCreators().body()?.data?.results?.map { it ->
-                    mapperObject.creatorMapper.mapToEntity(it)
-                }
-                val creatorEntities = creator?.map { character ->
-                    mapperObject.creatorMapper.mapToCharacter(character)
-                }
-                creator?.let { marvelDatabase.creatorDao.insertCreator(it) }
-
-
-                emit(State.Success(creatorEntities))
-            } catch (e: Exception) {
-                emit(State.Error(e.message.toString()))
-            }
+    private suspend fun refreshCreators() {
+        apiService.getCreators().body()?.data?.results?.map {
+            mapperObject.creatorMapper.mapToEntity(it)
+        }?.let {
+            marvelDatabase.creatorDao.insertCreator(it)
         }
     }
 
-    override fun getSeries(): Flow<State<List<Character>?>> {
-        return flow {
-            emit(State.Loading)
-            try {
-                val series = apiService.getSeries().body()?.data?.results?.map { it ->
-                    mapperObject.seriesMapper.mapToEntity(it)
-                }
-                val entities = series?.map { character ->
-                    mapperObject.seriesMapper.mapToCharacter(character)
+    private suspend fun getAllSeries(): List<Character> = marvelDatabase.seriesDao.getSeries().map {
+        mapperObject.seriesMapper.mapToCharacter(it)
+    }
 
-                }
-                series?.let { marvelDatabase.seriesDao.insertSeries(it) }
-                emit(State.Success(entities))
-            } catch (e: Exception) {
-                emit(State.Error(e.message.toString()))
-            }
+    private suspend fun refreshSeries() {
+        apiService.getSeries().body()?.data?.results?.map {
+            mapperObject.seriesMapper.mapToEntity(it)
+        }?.let {
+            marvelDatabase.seriesDao.insertSeries(it)
         }
     }
 
 
+    private fun <T> wrapWithFlow(
+        getData: suspend () -> List<T>,
+        refreshData: suspend () -> Unit,
+    ): Flow<State<List<T>>> = flow {
+        emit(State.Loading)
+        try {
 
+            emit(State.Success(getData()))
+            refreshData()
+
+        } catch (e: Exception) {
+        }
+    }
 
 
 }

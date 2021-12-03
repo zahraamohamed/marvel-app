@@ -14,5 +14,5 @@ interface CharacterDao {
     suspend fun insertCharacters(item: List<CharacterEntity>)
 
     @Query("Select * from Marvel_Character")
-    fun getCharacters(): Flow<List<CharacterEntity>>
+    suspend fun getCharacters(): List<CharacterEntity>
 }
