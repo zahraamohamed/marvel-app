@@ -4,10 +4,7 @@ import com.example.marvel.data.local.MarvelDatabase
 import com.example.marvel.data.remote.MarvelService
 import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.domain.MarvelRepositoryImpl
-import com.example.marvel.domain.mapper.CharacterMapper
-import com.example.marvel.domain.mapper.CreatorMapper
-import com.example.marvel.domain.mapper.AllMapper
-import com.example.marvel.domain.mapper.SeriesMapper
+import com.example.marvel.domain.mapper.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,7 +31,8 @@ class RepositoryModule {
         characterMapper: CharacterMapper,
         creatorMapper: CreatorMapper,
         seriesMapper: SeriesMapper,
-    ): AllMapper = AllMapper(characterMapper, creatorMapper,seriesMapper)
+        comicsMapper: ComicsMapper,
+    ): AllMapper = AllMapper(characterMapper, creatorMapper, seriesMapper, comicsMapper)
 
     @Singleton
     @Provides
@@ -47,5 +45,9 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideSeriesMapper(): SeriesMapper = SeriesMapper()
+
+    @Singleton
+    @Provides
+    fun provideComicsMapper(): ComicsMapper = ComicsMapper()
 
 }

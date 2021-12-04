@@ -15,7 +15,7 @@ class HomeViewModel @Inject constructor(
 
     val characters = repository.getCharacters().asLiveData()
     val series = repository.getSeries().asLiveData()
-    val comics = repository.getSeries().asLiveData()
+    val comics = repository.getComics().asLiveData()
 
 
 

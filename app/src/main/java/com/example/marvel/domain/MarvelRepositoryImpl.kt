@@ -19,10 +19,8 @@ class MarvelRepositoryImpl @Inject constructor(
     override fun getCharacters() = wrapWithFlow(::getAllCharacters, ::refreshCharacters)
     override fun getCreator() = wrapWithFlow(::getAllCreators, ::refreshCreators)
     override fun getSeries() = wrapWithFlow(::getAllSeries, ::refreshSeries)
+    override fun getComics() = wrapWithFlow(::getAllComics, ::refreshComics)
 //    override fun search(name: String)=wrapWithFlow(::search,::refreshData )
-
-
-
 
 
     private suspend fun getAllCharacters(): List<Character> =
@@ -39,6 +37,22 @@ class MarvelRepositoryImpl @Inject constructor(
             mapperObject.characterMapper.mapToEntity(it)
         }?.let {
             marvelDatabase.characterDao.insertCharacters(it)
+
+        }
+    }
+
+    private suspend fun getAllComics(): List<Character> =
+        marvelDatabase.comicsDao.getComics().map {
+
+            mapperObject.comicsMapper.mapToCharacter(it)
+        }
+
+    private suspend fun refreshComics() {
+        apiService.getComics().body()?.data?.results?.map {
+
+            mapperObject.comicsMapper.mapToEntity(it)
+        }?.let {
+            marvelDatabase.comicsDao.insertComics(it)
 
         }
     }
@@ -92,7 +106,7 @@ class MarvelRepositoryImpl @Inject constructor(
             refreshData()
 
         } catch (e: Exception) {
-            Log.i("error hakeeer",e.message.toString())
+            Log.i("error hakeeer", e.message.toString())
         }
     }
 }
