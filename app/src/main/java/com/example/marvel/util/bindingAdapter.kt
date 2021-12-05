@@ -1,6 +1,5 @@
 package com.example.marvel.util
 
-import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.marvel.databinding.FragmentHomeBinding
 import com.example.marvel.ui.base.BaseFragment
 import com.example.marvel.util.HomeItem
@@ -26,6 +27,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         initNestedAdapter()
         observeListsForAdapter()
+        navigateFromFragment()
     }
 
     private fun initNestedAdapter() {
@@ -50,5 +52,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
             }
         }
+    }
+
+    private fun navigateFromFragment() {
+        viewModel.navigateToCharacterDetails.observe(this, { event ->
+            event.getContentIfNotHandled()?.let {
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailsCharacterFragment(it)
+                findNavController().navigate(action)
+            }
+        }
+        )
     }
 }

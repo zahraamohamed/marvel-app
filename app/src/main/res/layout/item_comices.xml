@@ -16,11 +16,10 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="200dp"
-        android:layout_height="260dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:elevation="2dp"
-        android:layout_margin="@dimen/margin1x"
-        android:background="@drawable/layout_shape"
+        android:background="@color/white"
         android:layout_marginHorizontal="@dimen/margin1x"
         android:layout_marginTop="@dimen/margin1x">
 
@@ -53,6 +52,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/txt2.5x"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/comices_image"

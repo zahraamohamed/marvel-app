@@ -35,13 +35,17 @@ class RepositoryModule {
         eventMapper: EventMapper,
         storiesMapper: StoriesMapper,
         searchMapper: SearchMapper,
-    ): AllMapper = AllMapper(characterMapper,
+        characterDetailsMapper: CharacterDetailsMapper,
+    ): AllMapper = AllMapper(
+        characterMapper,
         creatorMapper,
         seriesMapper,
         comicsMapper,
         eventMapper,
         storiesMapper,
-        searchMapper)
+        searchMapper,
+        characterDetailsMapper,
+    )
 
     @Singleton
     @Provides
@@ -70,5 +74,9 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideSearchMapper(): SearchMapper = SearchMapper()
+
+    @Singleton
+    @Provides
+    fun provideCharacterDetailsMapper(): CharacterDetailsMapper = CharacterDetailsMapper()
 
 }

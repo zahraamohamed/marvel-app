@@ -9,4 +9,5 @@ data class AllMapper(
     val eventMapper: EventMapper,
     val storiesMapper: StoriesMapper,
     val searchMapper: SearchMapper,
+    val characterDetailsMapper: CharacterDetailsMapper,
 )

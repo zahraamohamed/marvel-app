@@ -31,7 +31,13 @@
         android:id="@+id/detailsCharacterFragment"
         android:name="com.example.marvel.ui.characterDetails.DetailsCharacterFragment"
         android:label="DetailsCharacterFragment"
-        tools:layout="@layout/fragment_details_character"/>
+        tools:layout="@layout/fragment_details_character">
+
+
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/eventFragment"
         android:name="com.example.marvel.ui.event.EventFragment"

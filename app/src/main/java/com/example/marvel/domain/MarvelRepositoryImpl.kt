@@ -8,6 +8,7 @@ import com.example.marvel.domain.mapper.AllMapper
 import com.example.marvel.domain.models.Character
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import retrofit2.Response
 import javax.inject.Inject
 
 class MarvelRepositoryImpl @Inject constructor(
@@ -23,9 +24,11 @@ class MarvelRepositoryImpl @Inject constructor(
     override fun getEvents() = wrapWithFlow(::getAllEvent, ::refreshEvents)
     override fun getStories() = wrapWithFlow(::getAllStories, ::refreshStories)
 
-    override fun search(name: String): Flow<State<List<Character>?>> {
-        TODO("Not yet implemented")
+    override fun search(name: String): Flow<State<List<Character>?>> =wrap{
+        TODO()
     }
+
+    override fun getCharacterById(id: Int) =idCharacter(id)
 
 
     private suspend fun getAllCharacters(): List<Character> =
@@ -132,19 +135,67 @@ class MarvelRepositoryImpl @Inject constructor(
         }
     }
 
+    private suspend fun getAllCharacterDetails(): List<Character> =
+        marvelDatabase.characterDetailsDao.getCharactersDetails().map {
+
+            mapperObject.characterDetailsMapper.mapToCharacter(it)
+        }
+
+    private suspend fun refreshCharacterDetails(id: Int) {
+        apiService.getCharacterById(id).body()?.data?.results?.map {
+
+            mapperObject.characterDetailsMapper.mapToEntity(it)
+        }?.let {
+            marvelDatabase.characterDetailsDao.insertCharactersDetails(it)
+
+        }
+    }
+
 
     private fun <T> wrapWithFlow(
         getData: suspend () -> List<T>,
-        refreshData: suspend () -> Unit,
+        refreshData: (suspend () -> Unit)? = null
     ): Flow<State<List<T>>> = flow {
         emit(State.Loading)
         try {
-
+            refreshData?.let { it() }
             emit(State.Success(getData()))
-            refreshData()
-
         } catch (e: Exception) {
             Log.i("error hakeeer", e.message.toString())
+        }
+    }
+    private fun <T> wrap(function: suspend () -> Response<T>): Flow<State<T?>> =
+        flow {
+            try {
+                emit(State.Loading)
+                emit(checkIsSuccessful(function()))
+            } catch (e: Exception) {
+                emit(State.Error(e.message.toString()))
+            }
+        }
+
+    private fun <T> checkIsSuccessful(response: Response<T>): State<T?> =
+        if (response.isSuccessful) {
+            State.Success(response.body())
+        } else {
+            State.Error(response.message())
+        }
+
+
+
+    fun idCharacter(id: Int): Flow<State<Character>?> {
+        return flow {
+            emit(State.Loading)
+            val character = apiService.getCharacterById(id).body()?.data?.results?.first()
+            try {
+                character?.let { charactersDto ->
+                    mapperObject.characterDetailsMapper.map(charactersDto).also {
+                        emit(State.Success(it))
+                    }
+                }
+            } catch (e: Exception) {
+                emit(State.Error(e.message.toString()))
+            }
         }
     }
 }

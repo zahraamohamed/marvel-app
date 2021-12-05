@@ -19,7 +19,7 @@ interface MarvelService {
 
     @GET("characters/{characterId}")
     suspend fun getCharacterById(
-        @Path("characterID") characterId: Int,
+        @Path("characterId") characterId: Int,
     ): Response<BaseResponse<CharactersDto>?>
 
     @GET("comics")
