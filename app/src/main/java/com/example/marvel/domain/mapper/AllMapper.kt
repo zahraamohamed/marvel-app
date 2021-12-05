@@ -6,4 +6,7 @@ data class AllMapper(
     val creatorMapper: CreatorMapper,
     val seriesMapper: SeriesMapper,
     val comicsMapper: ComicsMapper,
+    val eventMapper: EventMapper,
+    val storiesMapper: StoriesMapper,
+    val searchMapper: SearchMapper,
 )

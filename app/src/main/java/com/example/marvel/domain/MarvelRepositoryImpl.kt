@@ -20,7 +20,12 @@ class MarvelRepositoryImpl @Inject constructor(
     override fun getCreator() = wrapWithFlow(::getAllCreators, ::refreshCreators)
     override fun getSeries() = wrapWithFlow(::getAllSeries, ::refreshSeries)
     override fun getComics() = wrapWithFlow(::getAllComics, ::refreshComics)
-//    override fun search(name: String)=wrapWithFlow(::search,::refreshData )
+    override fun getEvents() = wrapWithFlow(::getAllEvent, ::refreshEvents)
+    override fun getStories() = wrapWithFlow(::getAllStories, ::refreshStories)
+
+    override fun search(name: String): Flow<State<List<Character>?>> {
+        TODO("Not yet implemented")
+    }
 
 
     private suspend fun getAllCharacters(): List<Character> =
@@ -70,9 +75,10 @@ class MarvelRepositoryImpl @Inject constructor(
         }
     }
 
-    private suspend fun getAllSeries(): List<Character> = marvelDatabase.seriesDao.getSeries().map {
-        mapperObject.seriesMapper.mapToCharacter(it)
-    }
+    private suspend fun getAllSeries(): List<Character> =
+        marvelDatabase.seriesDao.getSeries().map {
+            mapperObject.seriesMapper.mapToCharacter(it)
+        }
 
     private suspend fun refreshSeries() {
         apiService.getSeries().body()?.data?.results?.map {
@@ -82,15 +88,47 @@ class MarvelRepositoryImpl @Inject constructor(
         }
     }
 
-    private suspend fun search(): List<Character> = marvelDatabase.seriesDao.getSeries().map {
-        mapperObject.seriesMapper.mapToCharacter(it)
+    private suspend fun search(): List<Character> =
+        marvelDatabase.searchDao.getSearch().map {
+            mapperObject.searchMapper.mapToCharacter(it)
+        }
+
+    private suspend fun refreshDataSearch(name: String) {
+        apiService.searchCharacter(name).body()?.data?.results?.map {
+            mapperObject.searchMapper.mapToEntity(it)
+        }?.let {
+            marvelDatabase.searchDao.insert(it)
+        }
     }
 
-    private suspend fun refreshDataSearched() {
-        apiService.getSeries().body()?.data?.results?.map {
-            mapperObject.seriesMapper.mapToEntity(it)
+
+    private suspend fun getAllEvent(): List<Character> =
+        marvelDatabase.eventDao.getEvent().map {
+
+            mapperObject.eventMapper.mapToCharacter(it)
+        }
+
+    private suspend fun refreshEvents() {
+        apiService.getEvent().body()?.data?.results?.map {
+            mapperObject.eventMapper.mapToEntity(it)
         }?.let {
-            marvelDatabase.seriesDao.insertSeries(it)
+            marvelDatabase.eventDao.insertEvent(it)
+        }
+    }
+
+    private suspend fun getAllStories(): List<Character> =
+        marvelDatabase.storiesDao.getStories().map {
+
+            mapperObject.storiesMapper.mapToCharacter(it)
+        }
+
+    private suspend fun refreshStories() {
+        apiService.getStories().body()?.data?.results?.map {
+
+            mapperObject.storiesMapper.mapToEntity(it)
+        }?.let {
+            marvelDatabase.storiesDao.insertStories(it)
+
         }
     }
 

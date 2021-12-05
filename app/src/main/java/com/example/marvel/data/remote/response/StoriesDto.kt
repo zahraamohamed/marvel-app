@@ -25,7 +25,7 @@ data class StoriesDto(
     @SerializedName("series")
     val series: SubList?,
     @SerializedName("thumbnail")
-    val thumbnail: Any?,
+    val thumbnail: Thumbnail?,
     @SerializedName("title")
     val title: String?,
     @SerializedName("type")

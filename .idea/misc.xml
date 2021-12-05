@@ -17,16 +17,21 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/Marvel/app/src/main/res/layout/item_series.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Marvel/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/fragment_creator.xml" value="0.18072916666666666" />
+        <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/fragment_event.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/fragment_search.xml" value="0.128125" />
+        <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/fragment_series.xml" value="0.22870370370370371" />
         <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/item_character.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/item_comices.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/item_creator.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/item_event.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/item_series.xml" value="0.128125" />
         <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/items_characteres.xml" value="0.1" />
         <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/items_nested_characteres.xml" value="0.2" />
         <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/items_nested_comics.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/items_nested_creators.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/layout/items_nested_series.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/hp/Desktop/Marvel/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

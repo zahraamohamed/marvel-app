@@ -12,9 +12,9 @@
         android:title="@string/search" />
 
     <item
-        android:id="@+id/creatorFragment"
+        android:id="@+id/eventFragment"
         android:icon="@drawable/ic_person"
-        android:title="@string/creators" />
+        android:title="@string/event" />
     <item
         android:id="@+id/seriesFragment"
         android:icon="@drawable/ic_baseline_live_tv_24"

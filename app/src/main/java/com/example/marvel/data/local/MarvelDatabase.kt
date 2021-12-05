@@ -7,7 +7,10 @@ import com.example.marvel.data.local.dao.*
 import com.example.marvel.data.local.entity.*
 
 
-@Database(entities = [CharacterEntity::class, CreatorEntity::class, SeriesEntity::class, SearchEntity::class,ComicsEntity::class],
+@Database(entities = [CharacterEntity::class,
+    CreatorEntity::class, SeriesEntity::class,
+    SearchEntity::class, ComicsEntity::class,
+    StoriesEntity::class, EventEntity::class],
     version = 1)
 @TypeConverters(Converters::class)
 abstract class MarvelDatabase : RoomDatabase() {
@@ -16,4 +19,6 @@ abstract class MarvelDatabase : RoomDatabase() {
     abstract val seriesDao: SeriesDao
     abstract val searchDao: SearchDao
     abstract val comicsDao: ComicsDao
+    abstract val storiesDao:StoriesDao
+    abstract val eventDao:EventDao
 }

@@ -4,7 +4,7 @@ import com.example.marvel.data.local.entity.SeriesEntity
 import com.example.marvel.data.remote.response.SeriesDto
 import com.example.marvel.domain.models.Character
 
-class SeriesMapper : Mapper<SeriesDto, Character, SeriesEntity> {
+class SeriesMapper : BaseMapper<SeriesDto, Character, SeriesEntity> {
     override fun mapToEntity(input: SeriesDto): SeriesEntity {
         val url = input.thumbnail?.path?.replace("http", "https")
         return SeriesEntity(

@@ -37,16 +37,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
             viewModel.characters.observe(this@HomeFragment) { items ->
                 Log.v("xyt", items.toData().toString())
-                items?.toData()?.let { adapter.addItem(HomeItem.CharacterType(it))
+                items?.toData()?.let {
+                    adapter.addItem(HomeItem.CharacterType(it))
                 }
             }
             viewModel.comics.observe(this@HomeFragment) { items ->
                 items?.toData()?.let { adapter.addItem(HomeItem.ComicsType(it)) }
             }
 
-//            viewModel.series.observe(this@HomeFragment) { items ->
-//                items?.toData()?.let { adapter.addItem(HomeItem.SeriesType(it)) }
-//            }
+            viewModel.creator.observe(this@HomeFragment) { items ->
+                items?.toData()?.let { adapter.addItem(HomeItem.CreatorType(it)) }
+
+            }
         }
     }
 }

@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.example.marvel.databinding.FragmentCreatorBinding
 import com.example.marvel.databinding.FragmentDetailsCharacterBinding
 import com.example.marvel.ui.base.BaseFragment
-import com.example.marvel.ui.creator.CreatorViewModel
 
 
 class DetailsCharacterFragment:BaseFragment<FragmentDetailsCharacterBinding>() {

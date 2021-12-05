@@ -4,7 +4,6 @@ import android.view.ViewGroup
 import com.example.marvel.BR
 import com.example.marvel.R
 import com.example.marvel.ui.base.BaseAdapter
-import com.example.marvel.ui.series.SeriesAdapter
 import com.example.marvel.util.HomeItem
 
 class HomeNestedRecyclerAdapter(
@@ -33,7 +32,7 @@ class HomeNestedRecyclerAdapter(
         when (viewType) {
             TYPE_CHARACTER -> R.layout.items_nested_characteres
 
-//            TYPE_SERIES -> R.layout.items_nested_characteres
+            TYPE_CREATORS -> R.layout.items_nested_creators
             TYPE_COMICS -> R.layout.items_nested_comics
             else -> R.layout.items_nested_characteres
         }
@@ -50,10 +49,10 @@ class HomeNestedRecyclerAdapter(
                     CharacterAdapter(currentItem.items, listener))
 
             }
-//            is HomeItem.SeriesType -> {
-//                holder.binding.setVariable(BR.adapter,
-//                    SeriesAdapter(currentItem.items, listener))
-//            }
+            is HomeItem.CreatorType -> {
+                holder.binding.setVariable(BR.adapter,
+                    CreatorAdapter(currentItem.items, listener))
+            }
             is HomeItem.ComicsType -> {
                 holder.binding.setVariable(BR.adapter,
                     ComicsAdapter(currentItem.items, listener))
@@ -66,14 +65,14 @@ class HomeNestedRecyclerAdapter(
         when (itemsNested[position]) {
 
             is HomeItem.CharacterType -> TYPE_CHARACTER
-//            is HomeItem.SeriesType -> TYPE_SERIES
+            is HomeItem.CreatorType -> TYPE_CREATORS
             is HomeItem.ComicsType -> TYPE_COMICS
         }
 
     companion object {
         const val TYPE_CHARACTER = 1
         const val TYPE_COMICS = 2
-        const val TYPE_SERIES = 3
+        const val TYPE_CREATORS = 3
 
     }
 

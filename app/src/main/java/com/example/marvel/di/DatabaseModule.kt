@@ -22,5 +22,4 @@ object DatabaseModule {
             @ApplicationContext context: Context
         ) = Room.databaseBuilder(context, MarvelDatabase::class.java, Constant.DATABASE_NAME).build()
 
-
 }

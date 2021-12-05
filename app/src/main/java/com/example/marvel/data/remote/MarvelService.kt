@@ -1,7 +1,6 @@
 package com.example.marvel.data.remote
 
 import com.example.marvel.data.remote.response.*
-import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -12,10 +11,10 @@ interface MarvelService {
     @GET("characters")
     suspend fun getCharacter(): Response<BaseResponse<CharactersDto>?>
 
-   @GET("characters")
-     fun searchCharacter(
-       @Query("name") name: String
-   ):Response<BaseResponse<CharactersDto>?>
+    @GET("characters")
+    suspend fun searchCharacter(
+        @Query("name", encoded = false) name: String,
+    ): Response<BaseResponse<CharactersDto>?>
 
 
     @GET("characters/{characterId}")
@@ -28,7 +27,7 @@ interface MarvelService {
     ): Response<BaseResponse<ComicsDto>?>
 
     @GET("creators")
-     suspend fun getCreators(
+    suspend fun getCreators(
     ): Response<BaseResponse<CreatorDto>?>
 
     @GET("stories")
@@ -38,4 +37,8 @@ interface MarvelService {
     @GET("series")
     suspend fun getSeries(
     ): Response<BaseResponse<SeriesDto>?>
+
+    @GET("events")
+    suspend fun getEvent(
+    ): Response<BaseResponse<EventDto>?>
 }

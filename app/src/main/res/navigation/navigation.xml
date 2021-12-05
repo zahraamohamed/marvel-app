@@ -23,11 +23,6 @@
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
     <fragment
-        android:id="@+id/creatorFragment"
-        android:name="com.example.marvel.ui.creator.CreatorFragment"
-        android:label="CreatorFragment"
-        tools:layout="@layout/fragment_creator" />
-    <fragment
         android:id="@+id/seriesFragment"
         android:name="com.example.marvel.ui.series.SeriesFragment"
         android:label="SeriesFragment"
@@ -37,5 +32,10 @@
         android:name="com.example.marvel.ui.characterDetails.DetailsCharacterFragment"
         android:label="DetailsCharacterFragment"
         tools:layout="@layout/fragment_details_character"/>
+    <fragment
+        android:id="@+id/eventFragment"
+        android:name="com.example.marvel.ui.event.EventFragment"
+        android:label="EventFragment"
+        tools:layout="@layout/fragment_event"/>
 
 </navigation>
