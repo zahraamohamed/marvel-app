@@ -1,4 +1,4 @@
-package com.example.marvel.ui.creator
+package com.example.marvel.ui.event
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -8,11 +8,11 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class CreatorViewModel @Inject constructor(
+class EventViewModel @Inject constructor(
     private val repository: MarvelRepository,
 
-    ) : ViewModel(), CreatorsInteractionListener {
+    ) : ViewModel(), EventInteractionListener {
 
-    val creator = repository.getCreator().asLiveData()
+    val event = repository.getEvents().asLiveData()
 
 }

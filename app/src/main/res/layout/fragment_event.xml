@@ -7,22 +7,31 @@
 
         <variable
             name="viewModel"
-            type="com.example.marvel.ui.creator.CreatorViewModel" />
+            type="com.example.marvel.ui.event.EventViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.creator.CreatorFragment">
+        tools:context=".ui.event.EventFragment">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/creators"
+            app:layout_constraintBottom_toTopOf="@+id/event_Recycler"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/event_Recycler" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/creator_Recycler"
+            android:id="@+id/event_Recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/margin1x"
-            android:orientation="vertical"
-            app:items="@{viewModel.creator.toData()}"
             android:layout_marginVertical="@dimen/margin1x"
+            android:orientation="vertical"
+            app:items="@{viewModel.event.toData()}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
