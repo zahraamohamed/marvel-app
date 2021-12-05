@@ -20,9 +20,6 @@ class EventFragment : BaseFragment<FragmentEventBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.event.observe(this@EventFragment,{
-            Log.v("testtt",it.toString())
-        })
         binding.eventRecycler.adapter = EventAdapter(emptyList(), viewModel)
 
     }
