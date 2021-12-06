@@ -4,19 +4,23 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
+        android:enabled="true"
         android:title="@string/title_home" />
 
     <item
         android:id="@+id/searchFragment"
         android:icon="@drawable/ic_baseline_search_24"
+        android:enabled="true"
         android:title="@string/search" />
 
     <item
         android:id="@+id/eventFragment"
+        android:enabled="true"
         android:icon="@drawable/ic_person"
         android:title="@string/event" />
     <item
         android:id="@+id/seriesFragment"
+        android:enabled="true"
         android:icon="@drawable/ic_baseline_live_tv_24"
         android:title="@string/series" />
 
