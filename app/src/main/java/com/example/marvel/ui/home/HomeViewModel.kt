@@ -1,12 +1,10 @@
 package com.example.marvel.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.*
 import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,4 +24,6 @@ class HomeViewModel @Inject constructor(
     override fun onCharacterClicked(id: Int) {
         _navigateToCharacterDetails.value = Event(id)
     }
+
+
 }

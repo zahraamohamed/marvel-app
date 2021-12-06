@@ -4,7 +4,7 @@ import com.example.marvel.data.local.entity.SearchEntity
 import com.example.marvel.data.remote.response.CharactersDto
 import com.example.marvel.domain.models.Character
 
-class SearchMapper : BaseMapper<CharactersDto, Character, SearchEntity> {
+class SearchMapper : Mapper<CharactersDto, Character, SearchEntity> {
 
     override fun mapToEntity(input: CharactersDto): SearchEntity {
         val url = input.thumbnail?.path?.replace("http", "https")
