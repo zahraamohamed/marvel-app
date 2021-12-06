@@ -27,13 +27,12 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/character_image"
             android:layout_width="0dp"
-            android:layout_height="150dp"
+            android:layout_height="190dp"
             android:scaleType="fitXY"
             app:imgUrl="@{item.imageUrl}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
             tools:src="@tools:sample/avatars" />
 
         <TextView

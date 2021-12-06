@@ -16,7 +16,23 @@
         tools:context=".ui.event.EventFragment">
 
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/progress_bar_style"
+            android:layout_marginTop="110dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.event}" />
 
+        <ImageView
+            android:id="@+id/error"
+            style="@style/image_error_style"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:showWhenError="@{viewModel.event}"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/event_Recycler"
             android:layout_width="match_parent"
@@ -30,7 +46,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:spanCount="1"
             tools:listitem="@layout/item_creator" />
 
 

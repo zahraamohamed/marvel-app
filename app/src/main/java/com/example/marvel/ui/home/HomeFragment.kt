@@ -38,12 +38,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         (binding.nestedRecycler.adapter as HomeNestedRecyclerAdapter?)?.let { adapter ->
 
             viewModel.characters.observe(this@HomeFragment) { items ->
-                Log.v("xyt", items.toData().toString())
                 items?.toData()?.let {
                     adapter.addItem(HomeItem.CharacterType(it))
                 }
             }
             viewModel.comics.observe(this@HomeFragment) { items ->
+                Log.v("xyt", items.toData().toString())
+
                 items?.toData()?.let { adapter.addItem(HomeItem.ComicsType(it)) }
             }
 

@@ -17,4 +17,29 @@
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
     <item name="cornerSize">50%</item>
     </style>
+
+
+    <!-- progress -->
+    <style name="progress_bar_style" parent="Widget.AppCompat.ProgressBar">
+
+        <item name="android:indeterminateTint">@color/app_color</item>
+        <item name="android:progressBackgroundTint">@color/app_color</item>
+        <item name="android:progressBackgroundTintMode">@color/app_color</item>
+        <item name="android:progressTint">@color/app_color</item>
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+
+
+    </style>
+
+    <!-- image error -->
+    <style name="image_error_style" parent="">
+
+        <item name="android:indeterminateTint">@color/app_color</item>
+        <item name="android:progressBackgroundTint">@color/app_color</item>
+        <item name="android:progressBackgroundTintMode">@color/app_color</item>
+        <item name="android:src">@drawable/ic_error</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>

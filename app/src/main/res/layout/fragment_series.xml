@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -15,15 +15,32 @@
         android:layout_height="match_parent"
         tools:context=".ui.series.SeriesFragment">
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/progress_bar_style"
+            android:layout_marginTop="110dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.series}" />
+
+        <ImageView
+            android:id="@+id/error"
+            style="@style/image_error_style"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenError="@{viewModel.series}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/series_Recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/margin1x"
+            android:layout_marginVertical="@dimen/margin1x"
             android:orientation="vertical"
             app:items="@{viewModel.series.toData()}"
-            android:layout_marginVertical="@dimen/margin1x"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

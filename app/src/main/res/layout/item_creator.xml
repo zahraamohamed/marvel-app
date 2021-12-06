@@ -26,9 +26,10 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/character_image"
-            android:layout_width="0dp"
+            android:layout_width="150dp"
             android:layout_height="150dp"
             android:scaleType="fitXY"
+            android:layout_marginTop="@dimen/margin1x"
             app:imgUrl="@{item.imageUrl}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

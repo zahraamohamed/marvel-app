@@ -2,6 +2,7 @@ package com.example.marvel.domain
 
 import com.example.marvel.data.remote.State
 import com.example.marvel.domain.models.Character
+import com.example.marvel.domain.models.CharacterDetails
 import kotlinx.coroutines.flow.Flow
 
 interface MarvelRepository {
@@ -12,5 +13,5 @@ interface MarvelRepository {
     fun getEvents(): Flow<State<List<Character>?>>
     fun getStories(): Flow<State<List<Character>?>>
     fun search(name: String): Flow<State<List<Character>?>>
-    fun getCharacterById(id: Int): Flow<State<Character?>>
+    fun getCharacterById(id: Int): Flow<State<CharacterDetails?>>
 }
