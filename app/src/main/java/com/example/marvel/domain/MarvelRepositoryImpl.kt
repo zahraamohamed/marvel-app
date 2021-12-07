@@ -26,7 +26,7 @@ class MarvelRepositoryImpl @Inject constructor(
     override fun getStories() = wrap { getAllStories() }
 
     override fun search(name: String): Flow<State<List<Character>?>> = wrap {
-        TODO()
+        getAllCharacterSearch(name)
     }
 
     override fun getCharacterById(id: Int) = wrap {
@@ -89,12 +89,15 @@ class MarvelRepositoryImpl @Inject constructor(
 
         }
 
-    private suspend fun search(): List<Character> =
-        marvelDatabase.searchDao.getSearch().map {
+    private suspend fun getAllCharacterSearch(name: String): List<Character> {
+        refreshDataSearch(name)
+        return marvelDatabase.searchDao.getSearch().map {
             mapperObject.searchMapper.mapToCharacter(it)
         }
+    }
 
     private suspend fun refreshDataSearch(name: String) {
+
         apiService.searchCharacter(name).body()?.data?.results?.map {
             mapperObject.searchMapper.mapToEntity(it)
         }?.let {
