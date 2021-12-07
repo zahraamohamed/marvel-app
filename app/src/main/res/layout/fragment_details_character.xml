@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:padding="@dimen/padding1x"
-        android:elevation="2dp">
+        android:elevation="2dp"
+        android:padding="@dimen/padding1x">
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -40,12 +40,12 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:scaleType="fitXY"
-            app:showWhenSuccess="@{viewModel.characterDetails}"
             app:imgUrl="@{viewModel.characterDetails.toData().imageUrl}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            app:showWhenSuccess="@{viewModel.characterDetails}"
             tools:src="@tools:sample/avatars" />
 
         <TextView
@@ -57,13 +57,13 @@
             android:fontFamily="@font/acme"
             android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
-            app:showWhenSuccess="@{viewModel.characterDetails}"
             android:text="@{viewModel.characterDetails.toData().name}"
             android:textColor="@color/black"
             android:textSize="@dimen/txt2x"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/character_image"
+            app:showWhenSuccess="@{viewModel.characterDetails}"
             tools:text="Avengers: The Initiative (2007) #16 - Int " />
 
         <TextView
@@ -75,13 +75,13 @@
             android:fontFamily="@font/acme"
             android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
-            app:showWhenSuccess="@{viewModel.characterDetails}"
             android:text="@{viewModel.characterDetails.toData().description}"
             android:textColor="@color/black"
             android:textSize="@dimen/txt2x"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name_text"
+            app:showWhenSuccess="@{viewModel.characterDetails}"
             tools:text="Avengers: The Initiative (2007) #16 - Int " />
 
 

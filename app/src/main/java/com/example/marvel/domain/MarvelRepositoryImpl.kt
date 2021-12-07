@@ -82,6 +82,20 @@ class MarvelRepositoryImpl @Inject constructor(
             mapperObject.creatorMapper.mapToCharacter(it)
         }
     }
+    private suspend fun refreshDataStories() {
+        apiService.getStories().body()?.data?.results?.map {
+            mapperObject.storiesMapper.mapToEntity(it)
+        }?.let {
+            marvelDatabase.storiesDao.insertStories(it)
+        }
+    }
+
+    private suspend fun getAllStories(): List<Character> {
+        refreshDataStories()
+        return marvelDatabase.storiesDao.getStories().map {
+            mapperObject.storiesMapper.mapToCharacter(it)
+        }
+    }
 
 
     private suspend fun getAllSeries() =
@@ -127,10 +141,7 @@ class MarvelRepositoryImpl @Inject constructor(
             }
 
 
-    private suspend fun getAllStories() =
-        apiService.getStories().body()?.data?.results?.map {
-            mapperObject.storiesMapper.mapToCharacter(it)
-        }
+
 
 
     private fun <T> wrap(function: suspend () -> T): Flow<State<T?>> =
