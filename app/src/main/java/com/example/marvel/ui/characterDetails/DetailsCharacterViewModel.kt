@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.marvel.data.remote.State
 import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.domain.models.Character
+import com.example.marvel.domain.models.CharacterDetails
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -17,8 +18,8 @@ class DetailsCharacterViewModel @Inject constructor(
     private val repository: MarvelRepository,
 ) : ViewModel() {
 
-    private val _characterDetails = MutableLiveData<State<Character?>>()
-    val characterDetails: LiveData<State<Character?>> get() = _characterDetails
+    private val _characterDetails = MutableLiveData<State<CharacterDetails?>>()
+    val characterDetails: LiveData<State<CharacterDetails?>> get() = _characterDetails
 
     fun onLoad(id: Int) {
         viewModelScope.launch {
