@@ -41,6 +41,7 @@
             android:layout_marginVertical="@dimen/margin1x"
             android:orientation="vertical"
             app:items="@{viewModel.series.toData()}"
+            app:showWhenSuccess="@{viewModel.series}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -21,12 +21,16 @@
         android:id="@+id/searchFragment"
         android:name="com.example.marvel.ui.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_detailsCharacterFragment"
+            app:destination="@id/detailsCharacterFragment" />
+    </fragment>
     <fragment
         android:id="@+id/seriesFragment"
         android:name="com.example.marvel.ui.series.SeriesFragment"
         android:label="SeriesFragment"
-        tools:layout="@layout/fragment_series"/>
+        tools:layout="@layout/fragment_series" />
     <fragment
         android:id="@+id/detailsCharacterFragment"
         android:name="com.example.marvel.ui.characterDetails.DetailsCharacterFragment"
@@ -42,6 +46,6 @@
         android:id="@+id/eventFragment"
         android:name="com.example.marvel.ui.event.EventFragment"
         android:label="EventFragment"
-        tools:layout="@layout/fragment_event"/>
+        tools:layout="@layout/fragment_event" />
 
 </navigation>

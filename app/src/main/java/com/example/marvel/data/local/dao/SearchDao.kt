@@ -13,6 +13,6 @@ interface SearchDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: List<SearchEntity>)
 
-    @Query("Select * from Marvel_Search")
-    suspend fun getSearch(): List<SearchEntity>
+    @Query("Select * from Marvel_Search WHERE name LIKE :query")
+    suspend fun searchInDB(query: String): List<SearchEntity>
 }

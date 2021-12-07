@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -37,10 +37,33 @@
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/search_shape"
+            android:drawableStart="@drawable/ic_baseline_search_24"
+            android:elevation="2dp"
+            android:fontFamily="@font/acme"
+            android:hint="@string/search_character"
+            android:paddingHorizontal="@dimen/margin1x"
+            android:paddingVertical="@dimen/margin2x"
+            android:pointerIcon="arrow"
             android:text="@={viewModel.characterSearch}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/recent_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin2x"
+            android:fontFamily="@font/acme"
+            android:text="@string/recent"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt3x"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_Recycler"
@@ -50,13 +73,13 @@
             android:layout_marginVertical="@dimen/margin1x"
             android:orientation="vertical"
             app:items="@{viewModel.character.toData()}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search"
-            app:spanCount="2"
-            tools:listitem="@layout/item_creator" />
+            app:layout_constraintTop_toBottomOf="@id/recent_text"
+            app:showWhenSuccess="@{viewModel.character}"
+            tools:listitem="@layout/item_search" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

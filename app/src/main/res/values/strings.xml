@@ -8,4 +8,6 @@
     <string name="character">character</string>
     <string name="comics">comices</string>
     <string name="event">event</string>
+    <string name="search_character">search character</string>
+    <string name="recent">recent search</string>
 </resources>

@@ -2,6 +2,7 @@ package com.example.marvel.domain
 
 import android.util.Log
 import com.example.marvel.data.local.MarvelDatabase
+import com.example.marvel.data.local.entity.SearchEntity
 import com.example.marvel.data.remote.MarvelService
 import com.example.marvel.data.remote.State
 import com.example.marvel.domain.mapper.AllMapper
@@ -89,15 +90,22 @@ class MarvelRepositoryImpl @Inject constructor(
 
         }
 
+
+    private suspend fun searchInDB(query: String): List<SearchEntity> =
+        marvelDatabase.searchDao.searchInDB(query)
+
     private suspend fun getAllCharacterSearch(name: String): List<Character> {
-        refreshDataSearch(name)
-        return marvelDatabase.searchDao.getSearch().map {
+        suspend fun result() = searchInDB("%$name%")
+        if (result().isEmpty()) {
+            refreshDataSearch(name)
+        }
+
+        return result().map {
             mapperObject.searchMapper.mapToCharacter(it)
         }
     }
 
     private suspend fun refreshDataSearch(name: String) {
-
         apiService.searchCharacter(name).body()?.data?.results?.map {
             mapperObject.searchMapper.mapToEntity(it)
         }?.let {
