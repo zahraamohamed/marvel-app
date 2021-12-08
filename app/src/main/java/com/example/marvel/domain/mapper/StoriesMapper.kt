@@ -5,7 +5,7 @@ import com.example.marvel.data.remote.response.StoriesDto
 import com.example.marvel.domain.models.Character
 
 
-class StoriesMapper : Mapper<StoriesDto, Character, StoriesEntity> {
+class StoriesMapper : BaseMapper<StoriesDto, Character, StoriesEntity> {
 
     override fun mapToEntity(input: StoriesDto): StoriesEntity {
         val url = input.thumbnail?.path?.replace("http", "https")

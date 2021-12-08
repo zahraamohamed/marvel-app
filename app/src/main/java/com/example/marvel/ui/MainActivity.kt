@@ -1,7 +1,5 @@
-package com.example.marvel.ui.main
+package com.example.marvel.ui
 
-import android.net.Uri
-import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.marvel.R

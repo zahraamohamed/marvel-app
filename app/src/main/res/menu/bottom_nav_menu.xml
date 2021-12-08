@@ -16,7 +16,7 @@
     <item
         android:id="@+id/eventFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_person"
+        android:icon="@drawable/ic_baseline_event_available_24"
         android:title="@string/event" />
     <item
         android:id="@+id/seriesFragment"

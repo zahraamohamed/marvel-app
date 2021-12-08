@@ -21,8 +21,7 @@
         android:layout_margin="@dimen/margin1x"
         android:layout_marginHorizontal="@dimen/margin1x"
         android:layout_marginTop="@dimen/margin1x"
-        android:background="@drawable/shape_event_layout"
-        android:elevation="2dp"
+
         android:onClick="@{()->listener.onCharacterClicked(item.id)}">
 
         <com.google.android.material.imageview.ShapeableImageView

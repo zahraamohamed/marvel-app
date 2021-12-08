@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Marvel</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_home">home</string>
     <string name="search">search</string>
     <string name="creators">creators</string>
@@ -10,5 +9,4 @@
     <string name="event">event</string>
     <string name="search_character">search character</string>
     <string name="recent">recent search</string>
-    <string name="story">stories</string>
 </resources>

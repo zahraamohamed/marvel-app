@@ -21,8 +21,9 @@
         android:layout_margin="@dimen/margin1x"
         android:layout_marginHorizontal="@dimen/margin1x"
         android:layout_marginTop="@dimen/margin1x"
-        android:background="@drawable/shape_event_layout"
-        android:elevation="2dp">
+        android:background="@color/white"
+        >
+
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/character_image"
@@ -33,6 +34,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
             tools:src="@tools:sample/avatars" />
 
         <TextView
@@ -41,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin1x"
             android:layout_marginVertical="@dimen/margin1x"
+            android:elevation="2dp"
             android:ellipsize="marquee"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -55,33 +58,7 @@
             android:textSize="@dimen/txt2x"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/character_image"
-            tools:text="Avengers: The Initiative (2007) #16 - Int " />
-
-
-        <TextView
-            android:id="@+id/event_description_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin1x"
-            android:layout_marginVertical="@dimen/margin1x"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:fontFamily="@font/acme"
-            android:lines="3"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:maxEms="100"
-            android:maxLines="3"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:text="@{item.description}"
-            android:textColor="@color/black"
-            android:textSize="@dimen/txt2x"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/event_name_text"
+            app:layout_constraintTop_toBottomOf="@id/character_image"
             tools:text="Avengers: The Initiative (2007) #16 - Int " />
 
 

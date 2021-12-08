@@ -20,7 +20,7 @@
         android:layout_height="200dp"
         android:elevation="2dp"
         android:layout_margin="@dimen/margin1x"
-        android:background="@drawable/shape_event_layout"
+        android:background="@android:color/transparent"
         android:layout_marginHorizontal="@dimen/margin1x"
         android:layout_marginTop="@dimen/margin1x">
 
