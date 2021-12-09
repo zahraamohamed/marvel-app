@@ -7,7 +7,6 @@ import com.example.marvel.data.remote.MarvelService
 import com.example.marvel.data.remote.State
 import com.example.marvel.domain.mapper.AllMapper
 import com.example.marvel.domain.models.Character
-import com.example.marvel.domain.models.CharacterDetails
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -25,13 +24,8 @@ class MarvelRepositoryImpl @Inject constructor(
     override fun getSeries() = wrap { getAllSeries() }
     override fun getEvents() = wrap { getAllEvent() }
     override fun getStories() = wrap { getAllStories() }
-
-    override fun search(name: String): Flow<State<List<Character>?>> = wrap {
-        getAllCharacterSearch(name)
-    }
-
-    override fun getCharacterById(id: Int) = wrap {
-        getCharacterDetails(id)
+    override fun search(name: String): Flow<State<List<Character>?>> = wrap { getAllCharacterSearch(name) }
+    override fun getCharacterById(id: Int) = wrap { getCharacterDetails(id)
     }
 
     private suspend fun refreshDataCharacters() {
@@ -41,7 +35,6 @@ class MarvelRepositoryImpl @Inject constructor(
             mapperObject.characterMapper.mapToEntity(it)
         }?.let {
             marvelDatabase.characterDao.insertCharacters(it)
-
         }
     }
 
@@ -82,6 +75,7 @@ class MarvelRepositoryImpl @Inject constructor(
             mapperObject.creatorMapper.mapToCharacter(it)
         }
     }
+
     private suspend fun refreshDataStories() {
         apiService.getStories().body()?.data?.results?.map {
             mapperObject.storiesMapper.mapToEntity(it)
@@ -113,7 +107,6 @@ class MarvelRepositoryImpl @Inject constructor(
         if (result().isEmpty()) {
             refreshDataSearch(name)
         }
-
         return result().map {
             mapperObject.searchMapper.mapToCharacter(it)
         }
@@ -130,18 +123,14 @@ class MarvelRepositoryImpl @Inject constructor(
     private suspend fun getAllEvent() =
         apiService.getEvent().body()?.data?.results?.map {
             mapperObject.eventMapper.mapToCharacter(it)
-
         }
 
 
-    private suspend fun getCharacterDetails(id: Int): CharacterDetails? =
+    private suspend fun getCharacterDetails(id: Int): Character? =
         (apiService.getCharacterById(id).body()?.data?.results?.first())
             ?.let { charactersDto ->
                 mapperObject.characterDetailsMapper.mapToCharacter(charactersDto)
             }
-
-
-
 
 
     private fun <T> wrap(function: suspend () -> T): Flow<State<T?>> =
